@@ -91,9 +91,8 @@ with {
 // /[2]Stereo Output Gain : Defines the overall volume control as the [2] second control
 // The control is styled as a knob with an exponential range, so there will be more resolution in the low end of the knob
 
-stereoSplit = _,_ : (_<:_,_), _ : _, select2(selectMono) <: matrixDelays(numberOfDelays) : (_*outputGain), (_*outputGain)
+stereoSplit = _,_ : matrixDelays(numberOfDelays) : (_*outputGain), (_*outputGain)
 with {
-    selectMono = checkbox("t:EchoMatrix/v:[1]Delays/[1]Mono Input");
     outputGain = hslider("t:EchoMatrix/v:[1]Delays/[2]Stereo Output Gain", 0.9, 0.0, 1.2, 0.01) : si.smoo;
 };
 

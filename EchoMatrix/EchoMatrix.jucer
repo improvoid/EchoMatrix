@@ -3,10 +3,10 @@
 <JUCERPROJECT id="L9dULy" name="echomatrix" projectType="audioplug" version="1.0.0"
               bundleIdentifier="com.improvoid.echomatrix" includeBinaryInAppConfig="1"
               buildVST="0" buildVST3="1" buildAU="0" buildAUv3="0" buildRTAS="0"
-              buildAAX="0" buildStandalone="1" pluginName="echomatrix" pluginDesc="echomatrix"
-              pluginManufacturer="Improvoid" pluginManufacturerCode="Manu"
+              buildAAX="0" buildStandalone="1" pluginName="EchoMatrix" pluginDesc="EchoMatrix VST"
+              pluginManufacturer="ImprovOid" pluginManufacturerCode="Manu"
               pluginCode="5894" pluginChannelConfigs="{2,2}" pluginIsSynth="0"
-              pluginWantsMidiIn="1" pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0"
+              pluginWantsMidiIn="0" pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0"
               pluginEditorRequiresKeys="0" pluginAUExportPrefix="echomatrixAU"
               pluginRTASCategory="" aaxIdentifier="com.improvoid.echomatrix"
               pluginFormats="buildStandalone,buildVST3" displaySplashScreen="1"
@@ -14,7 +14,8 @@
               pluginVST3Category="Delay,Fx,Reverb" pluginAAXCategory="16,8"
               pluginVSTCategory="kPlugCategEffect" pluginAUMainType="'aufx'"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
-              pluginAAXDisableMultiMono="0" pluginCharacteristicsValue="pluginWantsMidiIn">
+              pluginAAXDisableMultiMono="0" companyName="ImprovOid" companyCopyright="Open Source - 2021"
+              companyWebsite="improvoid@github.io" companyEmail="improvoid@gmail.com">
   <MAINGROUP id="DIThxi" name="echomatrix">
     <GROUP id="{3EA8B881-7A5A-9E29-6E83-82528C15E424}" name="Source">
       <FILE id="BecAMR" name="FaustPluginProcessor.cpp" compile="1" resource="0"

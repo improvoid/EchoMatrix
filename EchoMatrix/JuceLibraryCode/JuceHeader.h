@@ -49,7 +49,7 @@
 namespace ProjectInfo
 {
     const char* const  projectName    = "echomatrix";
-    const char* const  companyName    = "";
+    const char* const  companyName    = "ImprovOid";
     const char* const  versionString  = "1.0.0";
     const int          versionNumber  = 0x10000;
 }
