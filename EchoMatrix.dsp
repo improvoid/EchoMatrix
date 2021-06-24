@@ -91,16 +91,14 @@ with {
     modOsc(j) = modwave(j, modFreq(j)) * modDepth(j);
 };
 
-// Allow a mono or stereo input, and some gain control on the output
+// Allow some gain control on the output
 
-// Note the hslider label specs. They define a mono/stereo input and an overall gain
 // t:EchoMatrix : Defines a "t" tab pane called EchoMatrix, essentially the "top" level
 // /v:[1]Delays : Defines one tab page called Delays, it will be a "v" vertical layout and the [1] 1st page
 // These same specs are used for all of the controls "paths", so all of the controls will end up on the Delays tab
 // Idential control paths define identical controls, so if you want one control to control multiple things
 // use the same path for multiple controls
 // /[1]Output Gain : Defines the overall volume control as the [1] first control
-// The control is styled as a knob with an exponential range, so there will be more resolution in the low end of the knob
 
 stereoSplit = _,_ : matrixDelays(numberOfDelays) : (_*outputGain), (_*outputGain)
 with {
