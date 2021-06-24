@@ -1,5 +1,9 @@
 /* ------------------------------------------------------------
+author: "ImprovOid"
+copyright: "ImprovOid"
+license: "BSD"
 name: "EchoMatrix"
+version: "1.00"
 Code generated with Faust 2.32.13 (https://faust.grame.fr)
 Compilation options: -a /usr/local/share/faust/juce/juce-plugin.cpp -lang cpp -es 1 -single -ftz 0
 ------------------------------------------------------------ */
@@ -9596,16 +9600,16 @@ class uiSlider : public uiComponent, public uiConverter, private juce::Slider::L
             fSlider.setTooltip(tooltip);
             // !NOTE! CHANGED: USED DIFFERENT SKEW FACTORS, NO cLog CONTROLS ARE USED FOR NOW
             switch (scale) {
-                case MetaDataUI::kLog:
-                    fSlider.setSkewFactor(1.5);
-                    break;
-                case MetaDataUI::kExp:
-                    fSlider.setSkewFactor(0.5);
-                    break;
-                default:
-                    break;
+            case MetaDataUI::kLog:
+                fSlider.setSkewFactor(1.5);
+                break;
+            case MetaDataUI::kExp:
+                fSlider.setSkewFactor(0.5);
+                break;
+            default:
+                break;
             }
-      
+
             // Label settings, only happens for a horizontal of numerical entry slider
             // because the method attachToComponent only give the choice to place the
             // slider name on centered top, which is what we want. It's done manually
@@ -10698,6 +10702,7 @@ public:
         // Name of the component is moved in Tab (so removed from component)
         // !NOTE! CHANGED COLOR FROM white TO deepskyblue
         juce::TabbedComponent::addTab(comp->getName(), juce::Colours::deepskyblue, comp, true);
+        comp->setName("");
         comp->setName("");
     }
     
@@ -14465,12 +14470,15 @@ class mydsp : public dsp {
  public:
 	
 	void metadata(Meta* m) { 
+		m->declare("author", "ImprovOid");
 		m->declare("basics.lib/name", "Faust Basic Element Library");
 		m->declare("basics.lib/version", "0.1");
 		m->declare("compile_options", "-a /usr/local/share/faust/juce/juce-plugin.cpp -lang cpp -es 1 -single -ftz 0");
+		m->declare("copyright", "ImprovOid");
 		m->declare("delays.lib/name", "Faust Delay Library");
 		m->declare("delays.lib/version", "0.1");
 		m->declare("filename", "EchoMatrix.dsp");
+		m->declare("license", "BSD");
 		m->declare("maths.lib/author", "GRAME");
 		m->declare("maths.lib/copyright", "GRAME");
 		m->declare("maths.lib/license", "LGPL with exception");
@@ -14483,6 +14491,7 @@ class mydsp : public dsp {
 		m->declare("platform.lib/version", "0.1");
 		m->declare("signals.lib/name", "Faust Signal Routing Library");
 		m->declare("signals.lib/version", "0.0");
+		m->declare("version", "1.00");
 	}
 
 	virtual int getNumInputs() {
@@ -14950,237 +14959,237 @@ class mydsp : public dsp {
 		ui_interface->declare(0, "1", "");
 		ui_interface->openVerticalBox("Delays");
 		ui_interface->declare(&fHslider88, "2", "");
-		ui_interface->addHorizontalSlider("Stereo Output Gain", &fHslider88, 0.899999976f, 0.0f, 1.20000005f, 0.00999999978f);
+		ui_interface->addHorizontalSlider("Output Gain", &fHslider88, 0.899999976f, 0.0f, 1.5f, 0.00999999978f);
 		ui_interface->declare(0, "3", "");
-		ui_interface->openHorizontalBox("Delay");
+		ui_interface->openHorizontalBox("Delay Time");
 		ui_interface->declare(&fHslider8, "scale", "exp");
 		ui_interface->declare(&fHslider8, "style", "knob");
 		ui_interface->declare(&fHslider8, "unit", "ms");
-		ui_interface->addHorizontalSlider("Unit 0", &fHslider8, 0.0f, 0.0f, 2000.0f, 0.100000001f);
+		ui_interface->addHorizontalSlider("DT U0", &fHslider8, 0.0f, 0.0f, 2000.0f, 0.100000001f);
 		ui_interface->declare(&fHslider20, "scale", "exp");
 		ui_interface->declare(&fHslider20, "style", "knob");
 		ui_interface->declare(&fHslider20, "unit", "ms");
-		ui_interface->addHorizontalSlider("Unit 1", &fHslider20, 0.0f, 0.0f, 2000.0f, 0.100000001f);
+		ui_interface->addHorizontalSlider("DT U1", &fHslider20, 0.0f, 0.0f, 2000.0f, 0.100000001f);
 		ui_interface->declare(&fHslider32, "scale", "exp");
 		ui_interface->declare(&fHslider32, "style", "knob");
 		ui_interface->declare(&fHslider32, "unit", "ms");
-		ui_interface->addHorizontalSlider("Unit 2", &fHslider32, 0.0f, 0.0f, 2000.0f, 0.100000001f);
+		ui_interface->addHorizontalSlider("DT U2", &fHslider32, 0.0f, 0.0f, 2000.0f, 0.100000001f);
 		ui_interface->declare(&fHslider44, "scale", "exp");
 		ui_interface->declare(&fHslider44, "style", "knob");
 		ui_interface->declare(&fHslider44, "unit", "ms");
-		ui_interface->addHorizontalSlider("Unit 3", &fHslider44, 0.0f, 0.0f, 2000.0f, 0.100000001f);
+		ui_interface->addHorizontalSlider("DT U3", &fHslider44, 0.0f, 0.0f, 2000.0f, 0.100000001f);
 		ui_interface->declare(&fHslider56, "scale", "exp");
 		ui_interface->declare(&fHslider56, "style", "knob");
 		ui_interface->declare(&fHslider56, "unit", "ms");
-		ui_interface->addHorizontalSlider("Unit 4", &fHslider56, 0.0f, 0.0f, 2000.0f, 0.100000001f);
+		ui_interface->addHorizontalSlider("DT U4", &fHslider56, 0.0f, 0.0f, 2000.0f, 0.100000001f);
 		ui_interface->declare(&fHslider68, "scale", "exp");
 		ui_interface->declare(&fHslider68, "style", "knob");
 		ui_interface->declare(&fHslider68, "unit", "ms");
-		ui_interface->addHorizontalSlider("Unit 5", &fHslider68, 0.0f, 0.0f, 2000.0f, 0.100000001f);
+		ui_interface->addHorizontalSlider("DT U5", &fHslider68, 0.0f, 0.0f, 2000.0f, 0.100000001f);
 		ui_interface->closeBox();
 		ui_interface->declare(0, "4", "");
 		ui_interface->openHorizontalBox("ModFreq");
 		ui_interface->declare(&fHslider11, "scale", "exp");
 		ui_interface->declare(&fHslider11, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 0", &fHslider11, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MF U0", &fHslider11, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider23, "scale", "exp");
 		ui_interface->declare(&fHslider23, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 1", &fHslider23, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MF U1", &fHslider23, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider35, "scale", "exp");
 		ui_interface->declare(&fHslider35, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 2", &fHslider35, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MF U2", &fHslider35, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider47, "scale", "exp");
 		ui_interface->declare(&fHslider47, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 3", &fHslider47, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MF U3", &fHslider47, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider59, "scale", "exp");
 		ui_interface->declare(&fHslider59, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 4", &fHslider59, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MF U4", &fHslider59, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider71, "scale", "exp");
 		ui_interface->declare(&fHslider71, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 5", &fHslider71, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MF U5", &fHslider71, 0.0500000007f, 0.0f, 10.0f, 0.00100000005f);
 		ui_interface->closeBox();
 		ui_interface->declare(0, "4", "");
 		ui_interface->openHorizontalBox("ModWave");
 		ui_interface->declare(&fHslider10, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 0", &fHslider10, 0.5f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MW U0", &fHslider10, 0.5f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider22, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 1", &fHslider22, 0.5f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MW U1", &fHslider22, 0.5f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider34, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 2", &fHslider34, 0.5f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MW U2", &fHslider34, 0.5f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider46, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 3", &fHslider46, 0.5f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MW U3", &fHslider46, 0.5f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider58, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 4", &fHslider58, 0.5f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MW U4", &fHslider58, 0.5f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider70, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 5", &fHslider70, 0.5f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MW U5", &fHslider70, 0.5f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->closeBox();
 		ui_interface->declare(0, "5", "");
 		ui_interface->openHorizontalBox("ModDepth");
 		ui_interface->declare(&fHslider9, "scale", "exp");
 		ui_interface->declare(&fHslider9, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 0", &fHslider9, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MD U0", &fHslider9, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
 		ui_interface->declare(&fHslider21, "scale", "exp");
 		ui_interface->declare(&fHslider21, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 1", &fHslider21, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MD U1", &fHslider21, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
 		ui_interface->declare(&fHslider33, "scale", "exp");
 		ui_interface->declare(&fHslider33, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 2", &fHslider33, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MD U2", &fHslider33, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
 		ui_interface->declare(&fHslider45, "scale", "exp");
 		ui_interface->declare(&fHslider45, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 3", &fHslider45, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MD U3", &fHslider45, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
 		ui_interface->declare(&fHslider57, "scale", "exp");
 		ui_interface->declare(&fHslider57, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 4", &fHslider57, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MD U4", &fHslider57, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
 		ui_interface->declare(&fHslider69, "scale", "exp");
 		ui_interface->declare(&fHslider69, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 5", &fHslider69, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("MD U5", &fHslider69, 0.0f, 0.0f, 0.800000012f, 0.00100000005f);
 		ui_interface->closeBox();
 		ui_interface->closeBox();
 		ui_interface->declare(0, "2", "");
 		ui_interface->openHorizontalBox("MatrixMixer");
 		ui_interface->openVerticalBox("Unit 0 Out");
 		ui_interface->declare(&fHslider5, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 0>0", &fHslider5, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U0 to U0", &fHslider5, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider17, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 0>1", &fHslider17, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U0 to U1", &fHslider17, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider29, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 0>2", &fHslider29, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U0 to U2", &fHslider29, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider41, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 0>3", &fHslider41, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U0 to U3", &fHslider41, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider53, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 0>4", &fHslider53, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U0 to U4", &fHslider53, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider65, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 0>5", &fHslider65, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U0 to U5", &fHslider65, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider77, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 0>6", &fHslider77, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U0 to U6", &fHslider77, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider85, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 0>7", &fHslider85, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U0 to U7", &fHslider85, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Unit 1 Out");
 		ui_interface->declare(&fHslider4, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 1>0", &fHslider4, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U1 to U0", &fHslider4, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider16, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 1>1", &fHslider16, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U1 to U1", &fHslider16, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider28, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 1>2", &fHslider28, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U1 to U2", &fHslider28, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider40, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 1>3", &fHslider40, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U1 to U3", &fHslider40, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider52, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 1>4", &fHslider52, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U1 to U4", &fHslider52, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider64, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 1>5", &fHslider64, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U1 to U5", &fHslider64, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider76, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 1>6", &fHslider76, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U1 to U6", &fHslider76, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider84, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 1>7", &fHslider84, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U1 to U7", &fHslider84, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Unit 2 Out");
 		ui_interface->declare(&fHslider3, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 2>0", &fHslider3, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U2 to U0", &fHslider3, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider15, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 2>1", &fHslider15, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U2 to U1", &fHslider15, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider27, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 2>2", &fHslider27, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U2 to U2", &fHslider27, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider39, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 2>3", &fHslider39, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U2 to U3", &fHslider39, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider51, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 2>4", &fHslider51, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U2 to U4", &fHslider51, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider63, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 2>5", &fHslider63, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U2 to U5", &fHslider63, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider75, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 2>6", &fHslider75, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U2 to U6", &fHslider75, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider83, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 2>7", &fHslider83, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U2 to U7", &fHslider83, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Unit 3 Out");
 		ui_interface->declare(&fHslider2, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 3>0", &fHslider2, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U3 to U0", &fHslider2, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider14, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 3>1", &fHslider14, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U3 to U1", &fHslider14, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider26, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 3>2", &fHslider26, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U3 to U2", &fHslider26, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider38, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 3>3", &fHslider38, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U3 to U3", &fHslider38, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider50, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 3>4", &fHslider50, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U3 to U4", &fHslider50, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider62, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 3>5", &fHslider62, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U3 to U5", &fHslider62, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider74, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 3>6", &fHslider74, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U3 to U6", &fHslider74, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider82, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 3>7", &fHslider82, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U3 to U7", &fHslider82, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Unit 4 Out");
 		ui_interface->declare(&fHslider1, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 4>0", &fHslider1, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U4 to U0", &fHslider1, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider13, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 4>1", &fHslider13, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U4 to U1", &fHslider13, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider25, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 4>2", &fHslider25, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U4 to U2", &fHslider25, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider37, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 4>3", &fHslider37, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U4 to U3", &fHslider37, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider49, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 4>4", &fHslider49, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U4 to U4", &fHslider49, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider61, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 4>5", &fHslider61, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U4 to U5", &fHslider61, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider73, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 4>6", &fHslider73, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U4 to U6", &fHslider73, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider81, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 4>7", &fHslider81, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U4 to U7", &fHslider81, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Unit 5 Out");
 		ui_interface->declare(&fHslider0, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 5>0", &fHslider0, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U5 to U0", &fHslider0, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider12, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 5>1", &fHslider12, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U5 to U1", &fHslider12, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider24, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 5>2", &fHslider24, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U5 to U2", &fHslider24, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider36, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 5>3", &fHslider36, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U5 to U3", &fHslider36, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider48, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 5>4", &fHslider48, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U5 to U4", &fHslider48, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider60, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 5>5", &fHslider60, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U5 to U5", &fHslider60, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider72, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 5>6", &fHslider72, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U5 to U6", &fHslider72, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider80, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 5>7", &fHslider80, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U5 to U7", &fHslider80, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Unit 6 Out");
 		ui_interface->declare(&fHslider6, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 6>0", &fHslider6, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U6 to U0", &fHslider6, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider18, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 6>1", &fHslider18, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U6 to U1", &fHslider18, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider30, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 6>2", &fHslider30, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U6 to U2", &fHslider30, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider42, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 6>3", &fHslider42, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U6 to U3", &fHslider42, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider54, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 6>4", &fHslider54, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U6 to U4", &fHslider54, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider66, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 6>5", &fHslider66, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U6 to U5", &fHslider66, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider78, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 6>6", &fHslider78, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U6 to U6", &fHslider78, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider86, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 6>7", &fHslider86, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U6 to U7", &fHslider86, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Unit 7 Out");
 		ui_interface->declare(&fHslider7, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 7>0", &fHslider7, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U7 to U0", &fHslider7, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider19, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 7>1", &fHslider19, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U7 to U1", &fHslider19, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider31, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 7>2", &fHslider31, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U7 to U2", &fHslider31, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider43, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 7>3", &fHslider43, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U7 to U3", &fHslider43, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider55, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 7>4", &fHslider55, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U7 to U4", &fHslider55, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider67, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 7>5", &fHslider67, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U7 to U5", &fHslider67, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider79, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 7>6", &fHslider79, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U7 to U6", &fHslider79, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->declare(&fHslider87, "style", "knob");
-		ui_interface->addHorizontalSlider("Unit 7>7", &fHslider87, 0.0f, 0.0f, 1.0f, 0.00100000005f);
+		ui_interface->addHorizontalSlider("U7 to U7", &fHslider87, 0.0f, 0.0f, 1.0f, 0.00100000005f);
 		ui_interface->closeBox();
 		ui_interface->closeBox();
 		ui_interface->closeBox();
@@ -15594,186 +15603,186 @@ class mydsp : public dsp {
 	#define FAUST_ACTIVES 89
 	#define FAUST_PASSIVES 0
 
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/Stereo Output Gain", fHslider88, 0.90000000000000002f, 0.0f, 1.2f, 0.01f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay/Unit 0", fHslider8, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay/Unit 1", fHslider20, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay/Unit 2", fHslider32, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay/Unit 3", fHslider44, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay/Unit 4", fHslider56, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay/Unit 5", fHslider68, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/Unit 0", fHslider11, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/Unit 1", fHslider23, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/Unit 2", fHslider35, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/Unit 3", fHslider47, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/Unit 4", fHslider59, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/Unit 5", fHslider71, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/Unit 0", fHslider10, 0.5f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/Unit 1", fHslider22, 0.5f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/Unit 2", fHslider34, 0.5f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/Unit 3", fHslider46, 0.5f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/Unit 4", fHslider58, 0.5f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/Unit 5", fHslider70, 0.5f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/Unit 0", fHslider9, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/Unit 1", fHslider21, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/Unit 2", fHslider33, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/Unit 3", fHslider45, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/Unit 4", fHslider57, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/Unit 5", fHslider69, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>0", fHslider5, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>1", fHslider17, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>2", fHslider29, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>3", fHslider41, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>4", fHslider53, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>5", fHslider65, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>6", fHslider77, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>7", fHslider85, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>0", fHslider4, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>1", fHslider16, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>2", fHslider28, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>3", fHslider40, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>4", fHslider52, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>5", fHslider64, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>6", fHslider76, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>7", fHslider84, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>0", fHslider3, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>1", fHslider15, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>2", fHslider27, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>3", fHslider39, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>4", fHslider51, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>5", fHslider63, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>6", fHslider75, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>7", fHslider83, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>0", fHslider2, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>1", fHslider14, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>2", fHslider26, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>3", fHslider38, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>4", fHslider50, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>5", fHslider62, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>6", fHslider74, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>7", fHslider82, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>0", fHslider1, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>1", fHslider13, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>2", fHslider25, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>3", fHslider37, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>4", fHslider49, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>5", fHslider61, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>6", fHslider73, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>7", fHslider81, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>0", fHslider0, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>1", fHslider12, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>2", fHslider24, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>3", fHslider36, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>4", fHslider48, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>5", fHslider60, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>6", fHslider72, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>7", fHslider80, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>0", fHslider6, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>1", fHslider18, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>2", fHslider30, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>3", fHslider42, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>4", fHslider54, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>5", fHslider66, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>6", fHslider78, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>7", fHslider86, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>0", fHslider7, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>1", fHslider19, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>2", fHslider31, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>3", fHslider43, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>4", fHslider55, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>5", fHslider67, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>6", fHslider79, 0.0f, 0.0f, 1.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>7", fHslider87, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/Output Gain", fHslider88, 0.90000000000000002f, 0.0f, 1.5f, 0.01f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay Time/DT U0", fHslider8, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay Time/DT U1", fHslider20, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay Time/DT U2", fHslider32, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay Time/DT U3", fHslider44, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay Time/DT U4", fHslider56, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[3]Delay Time/DT U5", fHslider68, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/MF U0", fHslider11, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/MF U1", fHslider23, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/MF U2", fHslider35, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/MF U3", fHslider47, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/MF U4", fHslider59, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModFreq/MF U5", fHslider71, 0.050000000000000003f, 0.0f, 10.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/MW U0", fHslider10, 0.5f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/MW U1", fHslider22, 0.5f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/MW U2", fHslider34, 0.5f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/MW U3", fHslider46, 0.5f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/MW U4", fHslider58, 0.5f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[4]ModWave/MW U5", fHslider70, 0.5f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/MD U0", fHslider9, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/MD U1", fHslider21, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/MD U2", fHslider33, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/MD U3", fHslider45, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/MD U4", fHslider57, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[1]Delays/[5]ModDepth/MD U5", fHslider69, 0.0f, 0.0f, 0.80000000000000004f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U0", fHslider5, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U1", fHslider17, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U2", fHslider29, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U3", fHslider41, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U4", fHslider53, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U5", fHslider65, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U6", fHslider77, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U7", fHslider85, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U0", fHslider4, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U1", fHslider16, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U2", fHslider28, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U3", fHslider40, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U4", fHslider52, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U5", fHslider64, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U6", fHslider76, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U7", fHslider84, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U0", fHslider3, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U1", fHslider15, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U2", fHslider27, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U3", fHslider39, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U4", fHslider51, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U5", fHslider63, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U6", fHslider75, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U7", fHslider83, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U0", fHslider2, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U1", fHslider14, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U2", fHslider26, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U3", fHslider38, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U4", fHslider50, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U5", fHslider62, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U6", fHslider74, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U7", fHslider82, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U0", fHslider1, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U1", fHslider13, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U2", fHslider25, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U3", fHslider37, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U4", fHslider49, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U5", fHslider61, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U6", fHslider73, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U7", fHslider81, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U0", fHslider0, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U1", fHslider12, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U2", fHslider24, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U3", fHslider36, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U4", fHslider48, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U5", fHslider60, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U6", fHslider72, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U7", fHslider80, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U0", fHslider6, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U1", fHslider18, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U2", fHslider30, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U3", fHslider42, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U4", fHslider54, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U5", fHslider66, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U6", fHslider78, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U7", fHslider86, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U0", fHslider7, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U1", fHslider19, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U2", fHslider31, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U3", fHslider43, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U4", fHslider55, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U5", fHslider67, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U6", fHslider79, 0.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U7", fHslider87, 0.0f, 0.0f, 1.0f, 0.001f);
 
 	#define FAUST_LIST_ACTIVES(p) \
-		p(HORIZONTALSLIDER, Stereo_Output_Gain, "EchoMatrix/[1]Delays/Stereo Output Gain", fHslider88, 0.90000000000000002f, 0.0f, 1.2f, 0.01f) \
-		p(HORIZONTALSLIDER, Unit_0, "EchoMatrix/[1]Delays/[3]Delay/Unit 0", fHslider8, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
-		p(HORIZONTALSLIDER, Unit_1, "EchoMatrix/[1]Delays/[3]Delay/Unit 1", fHslider20, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
-		p(HORIZONTALSLIDER, Unit_2, "EchoMatrix/[1]Delays/[3]Delay/Unit 2", fHslider32, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
-		p(HORIZONTALSLIDER, Unit_3, "EchoMatrix/[1]Delays/[3]Delay/Unit 3", fHslider44, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
-		p(HORIZONTALSLIDER, Unit_4, "EchoMatrix/[1]Delays/[3]Delay/Unit 4", fHslider56, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
-		p(HORIZONTALSLIDER, Unit_5, "EchoMatrix/[1]Delays/[3]Delay/Unit 5", fHslider68, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
-		p(HORIZONTALSLIDER, Unit_0, "EchoMatrix/[1]Delays/[4]ModFreq/Unit 0", fHslider11, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_1, "EchoMatrix/[1]Delays/[4]ModFreq/Unit 1", fHslider23, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_2, "EchoMatrix/[1]Delays/[4]ModFreq/Unit 2", fHslider35, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_3, "EchoMatrix/[1]Delays/[4]ModFreq/Unit 3", fHslider47, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_4, "EchoMatrix/[1]Delays/[4]ModFreq/Unit 4", fHslider59, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_5, "EchoMatrix/[1]Delays/[4]ModFreq/Unit 5", fHslider71, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_0, "EchoMatrix/[1]Delays/[4]ModWave/Unit 0", fHslider10, 0.5f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_1, "EchoMatrix/[1]Delays/[4]ModWave/Unit 1", fHslider22, 0.5f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_2, "EchoMatrix/[1]Delays/[4]ModWave/Unit 2", fHslider34, 0.5f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_3, "EchoMatrix/[1]Delays/[4]ModWave/Unit 3", fHslider46, 0.5f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_4, "EchoMatrix/[1]Delays/[4]ModWave/Unit 4", fHslider58, 0.5f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_5, "EchoMatrix/[1]Delays/[4]ModWave/Unit 5", fHslider70, 0.5f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_0, "EchoMatrix/[1]Delays/[5]ModDepth/Unit 0", fHslider9, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_1, "EchoMatrix/[1]Delays/[5]ModDepth/Unit 1", fHslider21, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_2, "EchoMatrix/[1]Delays/[5]ModDepth/Unit 2", fHslider33, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_3, "EchoMatrix/[1]Delays/[5]ModDepth/Unit 3", fHslider45, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_4, "EchoMatrix/[1]Delays/[5]ModDepth/Unit 4", fHslider57, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_5, "EchoMatrix/[1]Delays/[5]ModDepth/Unit 5", fHslider69, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_0>0, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>0", fHslider5, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_0>1, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>1", fHslider17, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_0>2, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>2", fHslider29, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_0>3, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>3", fHslider41, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_0>4, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>4", fHslider53, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_0>5, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>5", fHslider65, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_0>6, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>6", fHslider77, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_0>7, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/Unit 0>7", fHslider85, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_1>0, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>0", fHslider4, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_1>1, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>1", fHslider16, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_1>2, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>2", fHslider28, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_1>3, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>3", fHslider40, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_1>4, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>4", fHslider52, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_1>5, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>5", fHslider64, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_1>6, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>6", fHslider76, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_1>7, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/Unit 1>7", fHslider84, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_2>0, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>0", fHslider3, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_2>1, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>1", fHslider15, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_2>2, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>2", fHslider27, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_2>3, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>3", fHslider39, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_2>4, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>4", fHslider51, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_2>5, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>5", fHslider63, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_2>6, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>6", fHslider75, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_2>7, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/Unit 2>7", fHslider83, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_3>0, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>0", fHslider2, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_3>1, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>1", fHslider14, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_3>2, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>2", fHslider26, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_3>3, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>3", fHslider38, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_3>4, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>4", fHslider50, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_3>5, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>5", fHslider62, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_3>6, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>6", fHslider74, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_3>7, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/Unit 3>7", fHslider82, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_4>0, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>0", fHslider1, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_4>1, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>1", fHslider13, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_4>2, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>2", fHslider25, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_4>3, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>3", fHslider37, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_4>4, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>4", fHslider49, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_4>5, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>5", fHslider61, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_4>6, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>6", fHslider73, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_4>7, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/Unit 4>7", fHslider81, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_5>0, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>0", fHslider0, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_5>1, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>1", fHslider12, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_5>2, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>2", fHslider24, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_5>3, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>3", fHslider36, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_5>4, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>4", fHslider48, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_5>5, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>5", fHslider60, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_5>6, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>6", fHslider72, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_5>7, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/Unit 5>7", fHslider80, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_6>0, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>0", fHslider6, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_6>1, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>1", fHslider18, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_6>2, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>2", fHslider30, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_6>3, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>3", fHslider42, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_6>4, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>4", fHslider54, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_6>5, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>5", fHslider66, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_6>6, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>6", fHslider78, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_6>7, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/Unit 6>7", fHslider86, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_7>0, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>0", fHslider7, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_7>1, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>1", fHslider19, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_7>2, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>2", fHslider31, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_7>3, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>3", fHslider43, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_7>4, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>4", fHslider55, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_7>5, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>5", fHslider67, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_7>6, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>6", fHslider79, 0.0f, 0.0f, 1.0f, 0.001f) \
-		p(HORIZONTALSLIDER, Unit_7>7, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/Unit 7>7", fHslider87, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, Output_Gain, "EchoMatrix/[1]Delays/Output Gain", fHslider88, 0.90000000000000002f, 0.0f, 1.5f, 0.01f) \
+		p(HORIZONTALSLIDER, DT_U0, "EchoMatrix/[1]Delays/[3]Delay Time/DT U0", fHslider8, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
+		p(HORIZONTALSLIDER, DT_U1, "EchoMatrix/[1]Delays/[3]Delay Time/DT U1", fHslider20, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
+		p(HORIZONTALSLIDER, DT_U2, "EchoMatrix/[1]Delays/[3]Delay Time/DT U2", fHslider32, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
+		p(HORIZONTALSLIDER, DT_U3, "EchoMatrix/[1]Delays/[3]Delay Time/DT U3", fHslider44, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
+		p(HORIZONTALSLIDER, DT_U4, "EchoMatrix/[1]Delays/[3]Delay Time/DT U4", fHslider56, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
+		p(HORIZONTALSLIDER, DT_U5, "EchoMatrix/[1]Delays/[3]Delay Time/DT U5", fHslider68, 0.0f, 0.0f, 2000.0f, 0.10000000000000001f) \
+		p(HORIZONTALSLIDER, MF_U0, "EchoMatrix/[1]Delays/[4]ModFreq/MF U0", fHslider11, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MF_U1, "EchoMatrix/[1]Delays/[4]ModFreq/MF U1", fHslider23, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MF_U2, "EchoMatrix/[1]Delays/[4]ModFreq/MF U2", fHslider35, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MF_U3, "EchoMatrix/[1]Delays/[4]ModFreq/MF U3", fHslider47, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MF_U4, "EchoMatrix/[1]Delays/[4]ModFreq/MF U4", fHslider59, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MF_U5, "EchoMatrix/[1]Delays/[4]ModFreq/MF U5", fHslider71, 0.050000000000000003f, 0.0f, 10.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MW_U0, "EchoMatrix/[1]Delays/[4]ModWave/MW U0", fHslider10, 0.5f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MW_U1, "EchoMatrix/[1]Delays/[4]ModWave/MW U1", fHslider22, 0.5f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MW_U2, "EchoMatrix/[1]Delays/[4]ModWave/MW U2", fHslider34, 0.5f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MW_U3, "EchoMatrix/[1]Delays/[4]ModWave/MW U3", fHslider46, 0.5f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MW_U4, "EchoMatrix/[1]Delays/[4]ModWave/MW U4", fHslider58, 0.5f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MW_U5, "EchoMatrix/[1]Delays/[4]ModWave/MW U5", fHslider70, 0.5f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, MD_U0, "EchoMatrix/[1]Delays/[5]ModDepth/MD U0", fHslider9, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
+		p(HORIZONTALSLIDER, MD_U1, "EchoMatrix/[1]Delays/[5]ModDepth/MD U1", fHslider21, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
+		p(HORIZONTALSLIDER, MD_U2, "EchoMatrix/[1]Delays/[5]ModDepth/MD U2", fHslider33, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
+		p(HORIZONTALSLIDER, MD_U3, "EchoMatrix/[1]Delays/[5]ModDepth/MD U3", fHslider45, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
+		p(HORIZONTALSLIDER, MD_U4, "EchoMatrix/[1]Delays/[5]ModDepth/MD U4", fHslider57, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
+		p(HORIZONTALSLIDER, MD_U5, "EchoMatrix/[1]Delays/[5]ModDepth/MD U5", fHslider69, 0.0f, 0.0f, 0.80000000000000004f, 0.001f) \
+		p(HORIZONTALSLIDER, U0_to_U0, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U0", fHslider5, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U0_to_U1, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U1", fHslider17, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U0_to_U2, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U2", fHslider29, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U0_to_U3, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U3", fHslider41, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U0_to_U4, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U4", fHslider53, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U0_to_U5, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U5", fHslider65, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U0_to_U6, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U6", fHslider77, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U0_to_U7, "EchoMatrix/[2]MatrixMixer/Unit 0 Out/U0 to U7", fHslider85, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U1_to_U0, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U0", fHslider4, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U1_to_U1, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U1", fHslider16, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U1_to_U2, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U2", fHslider28, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U1_to_U3, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U3", fHslider40, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U1_to_U4, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U4", fHslider52, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U1_to_U5, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U5", fHslider64, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U1_to_U6, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U6", fHslider76, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U1_to_U7, "EchoMatrix/[2]MatrixMixer/Unit 1 Out/U1 to U7", fHslider84, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U2_to_U0, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U0", fHslider3, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U2_to_U1, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U1", fHslider15, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U2_to_U2, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U2", fHslider27, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U2_to_U3, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U3", fHslider39, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U2_to_U4, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U4", fHslider51, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U2_to_U5, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U5", fHslider63, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U2_to_U6, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U6", fHslider75, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U2_to_U7, "EchoMatrix/[2]MatrixMixer/Unit 2 Out/U2 to U7", fHslider83, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U3_to_U0, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U0", fHslider2, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U3_to_U1, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U1", fHslider14, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U3_to_U2, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U2", fHslider26, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U3_to_U3, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U3", fHslider38, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U3_to_U4, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U4", fHslider50, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U3_to_U5, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U5", fHslider62, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U3_to_U6, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U6", fHslider74, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U3_to_U7, "EchoMatrix/[2]MatrixMixer/Unit 3 Out/U3 to U7", fHslider82, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U4_to_U0, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U0", fHslider1, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U4_to_U1, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U1", fHslider13, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U4_to_U2, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U2", fHslider25, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U4_to_U3, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U3", fHslider37, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U4_to_U4, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U4", fHslider49, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U4_to_U5, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U5", fHslider61, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U4_to_U6, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U6", fHslider73, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U4_to_U7, "EchoMatrix/[2]MatrixMixer/Unit 4 Out/U4 to U7", fHslider81, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U5_to_U0, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U0", fHslider0, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U5_to_U1, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U1", fHslider12, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U5_to_U2, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U2", fHslider24, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U5_to_U3, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U3", fHslider36, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U5_to_U4, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U4", fHslider48, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U5_to_U5, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U5", fHslider60, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U5_to_U6, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U6", fHslider72, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U5_to_U7, "EchoMatrix/[2]MatrixMixer/Unit 5 Out/U5 to U7", fHslider80, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U6_to_U0, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U0", fHslider6, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U6_to_U1, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U1", fHslider18, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U6_to_U2, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U2", fHslider30, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U6_to_U3, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U3", fHslider42, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U6_to_U4, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U4", fHslider54, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U6_to_U5, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U5", fHslider66, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U6_to_U6, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U6", fHslider78, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U6_to_U7, "EchoMatrix/[2]MatrixMixer/Unit 6 Out/U6 to U7", fHslider86, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U7_to_U0, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U0", fHslider7, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U7_to_U1, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U1", fHslider19, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U7_to_U2, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U2", fHslider31, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U7_to_U3, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U3", fHslider43, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U7_to_U4, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U4", fHslider55, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U7_to_U5, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U5", fHslider67, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U7_to_U6, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U6", fHslider79, 0.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, U7_to_U7, "EchoMatrix/[2]MatrixMixer/Unit 7 Out/U7 to U7", fHslider87, 0.0f, 0.0f, 1.0f, 0.001f) \
 
 	#define FAUST_LIST_PASSIVES(p) \
 
@@ -16144,6 +16153,7 @@ juce::AudioProcessor::BusesProperties FaustPlugInAudioProcessor::getBusesPropert
 {
     /*
     if (juce::PluginHostType::getPluginLoadedAs() == wrapperType_Standalone) {
+
         if (FAUST_INPUTS == 0) {
             return BusesProperties().withOutput("Output", juce::AudioChannelSet::discreteChannels(std::min<int>(2, FAUST_OUTPUTS)), true);
         } else {
@@ -16161,6 +16171,7 @@ juce::AudioProcessor::BusesProperties FaustPlugInAudioProcessor::getBusesPropert
         }
     }
     */
+
     // Manual change to comply with VST3 requirements
     return BusesProperties()
         .withInput("Input", juce::AudioChannelSet::stereo(), true)

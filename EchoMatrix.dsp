@@ -1,3 +1,9 @@
+declare name "EchoMatrix";
+declare author "ImprovOid";
+declare copyright "ImprovOid";
+declare version "1.00";
+declare license "BSD";
+
 import("stdfaust.lib");
 
 // Can change the number of delay lines and the matrix size
@@ -15,9 +21,9 @@ minDelaySamples = ma.SR / 10000;
 // t:EchoMatrix : Defines a "t" tab pane called EchoMatrix, essentially the "top" level
 // /h:[2]MatrixMixed : Defines one tab page called MatrixMixer, it will be a "h" horizontal layout and the [2] second page
 // /v:Unit%2c Out : Defines the "v" vertical knob group for all of the Units, %2c imbeds a 2 digit column number
-// /Unit%2c>%1in[style:knob] : Defines the labels on the knobs an styles the sliders as knobs
+// /U%1c to U%1in[style:knob] : Defines the labels on the knobs an styles the sliders as knobs
 
-volume(c, in) = hslider("t:EchoMatrix/h:[2]MatrixMixer/v:Unit%2c Out/Unit%2c>%1in[style:knob]",0.0,0.0,1.0,0.001): si.smoo;
+volume(c, in) = hslider("t:EchoMatrix/h:[2]MatrixMixer/v:Unit%2c Out/U%1c to U%1in[style:knob]",0.0,0.0,1.0,0.001): si.smoo;
 Mixer(N,out) 	= par(in, N, *(volume(in, out)) ) :> _;
 Matrix(N,M) 	= par(in, N, _) <: par(out, M, Mixer(N, out));
 
@@ -36,11 +42,11 @@ modrevsaw(f,m) = (m - 0.5) : max(0.0) : _ * 2.0 * (0.0 - os.lf_saw(f));
 // t:EchoMatrix : Defines a "t" tab pane called EchoMatrix, essentially the "top" level
 // /v:[1]Delays : Defines one tab page called Delays, it will be a "v" vertical layout and the [1] 1st page
 // /h:[4]ModWave : Defines a control group that will group sub-controls in a "h" horizontal layout
-// /Unit %j[style:knob] : Defines the labels on the knobs an styles the sliders as knobs
+// /MW U%j[style:knob] : Defines the labels on the knobs an styles the sliders as knobs
 
 modwave(j,f) = modsaw(f,m) + modsin(f,m) + modrevsaw(f,m) //: si.smoo
 with {
-    m = hslider("t:EchoMatrix/v:[1]Delays/h:[4]ModWave/Unit %j[style:knob]",0.5, 0.0, 1.0, 0.001);
+    m = hslider("t:EchoMatrix/v:[1]Delays/h:[4]ModWave/MW U%j[style:knob]",0.5, 0.0, 1.0, 0.001);
 };
 
 // Define the matrix, delays, and feedback paths
@@ -60,22 +66,28 @@ with {
 // Idential control paths define identical controls, so if you want one control to control multiple things
 // use the same path for multiple controls
 // The control numbers inserted with %j start with 0
-// /h:[3]Delay/Unit %j[unit:ms][scale:exp][style:knob] : Defines the delay amount with a msec label as the [3] third group.
+//
+// /h:[3]Delay Time : Defines the [2] second horizontal group of delay time controls
+// /DT U%j[unit:ms][scale:exp][style:knob] : Defines the delay time (DT) with a msec label as a knob.
 // The control is styled as a knob with an exponential range, so there will be more resolution in the low end of the knob
-// /h:[4]ModFreq/Unit %j[scale:exp][style:knob] : Defines the mod frequency as the [4] fourth group.
+//
+// /h:[4]ModFreq : Defines the [3] third horizontal group of modulation frequency controls
+// /MF U%j[scale:exp][style:knob] : Defines the mod frequency control (MF)  as a knob.
 // The control is styled as a knob with an exponential range, so there will be more resolution in the low end of the knob
-// /h:[5]ModDepth/Unit %j[scale:exp][style:knob] : Defines the mod depth as the [5] fifth group.
+//
+// /h:[5]ModDepth : Defines the [4] fourth horizontal group of modulation depth controls
+// /MD U%j[scale:exp][style:knob] : Defines the mod depth control (MD) as a knob.
 // The control is styled as a knob with an exponential range, so there will be more resolution in the low end of the knob
 
 matrixDelays(N) = _,_ : ( fdMatrix(N + 2) : par(i,N, effects(i)),_,_ ) ~ par(r,N,_) : par(l,N,!),_,_
 with {
     // For now, the effect is just the delay with a time and a modulator
 	effects(j)	= de.fdelay2(maxDelaySamples, dtime(j));
-    dtime(j)	= hslider("t:EchoMatrix/v:[1]Delays/h:[3]Delay/Unit %j[unit:ms][scale:exp][style:knob]", 0, 0, maxDelayMsec, 0.1) : si.smoo :
+    dtime(j)	= hslider("t:EchoMatrix/v:[1]Delays/h:[2]Delay Time/DT U%j[unit:ms][scale:exp][style:knob]", 0, 0, maxDelayMsec, 0.1) : si.smoo :
         *(1.0+modOsc(j))*ma.SR/1000.0
         : min(maxDelaySamples) : max(minDelaySamples);
-    modFreq(j) = hslider("t:EchoMatrix/v:[1]Delays/h:[4]ModFreq/Unit %j[scale:exp][style:knob]", 0.05, 0.0, 10.0, 0.001) : si.smoo ;
-    modDepth(j) = hslider("t:EchoMatrix/v:[1]Delays/h:[5]ModDepth/Unit %j[scale:exp][style:knob]", 0.0, 0.0, 0.8, 0.001) : si.smoo ;
+    modFreq(j) = hslider("t:EchoMatrix/v:[1]Delays/h:[3]ModFreq/MF U%j[scale:exp][style:knob]", 0.05, 0.0, 10.0, 0.001) : si.smoo ;
+    modDepth(j) = hslider("t:EchoMatrix/v:[1]Delays/h:[4]ModDepth/MD U%j[scale:exp][style:knob]", 0.0, 0.0, 0.8, 0.001) : si.smoo ;
     modOsc(j) = modwave(j, modFreq(j)) * modDepth(j);
 };
 
@@ -87,13 +99,12 @@ with {
 // These same specs are used for all of the controls "paths", so all of the controls will end up on the Delays tab
 // Idential control paths define identical controls, so if you want one control to control multiple things
 // use the same path for multiple controls
-// /[1]Mono Input : Defines a checkbox/switch that will provide the left signal to both left and right inputs
-// /[2]Stereo Output Gain : Defines the overall volume control as the [2] second control
+// /[1]Output Gain : Defines the overall volume control as the [1] first control
 // The control is styled as a knob with an exponential range, so there will be more resolution in the low end of the knob
 
 stereoSplit = _,_ : matrixDelays(numberOfDelays) : (_*outputGain), (_*outputGain)
 with {
-    outputGain = hslider("t:EchoMatrix/v:[1]Delays/[2]Stereo Output Gain", 0.9, 0.0, 1.2, 0.01) : si.smoo;
+    outputGain = hslider("t:EchoMatrix/v:[1]Delays/[1]Output Gain", 0.9, 0.0, 1.5, 0.01) : si.smoo;
 };
 
 process = _,_ : stereoSplit : _,_;
