@@ -29,6 +29,9 @@ Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
 
+PrivilegesRequired=admin
+ArchitecturesInstallIn64BitMode=x64
+
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
@@ -38,4 +41,3 @@ Source: "C:\Projects_Audio\GIT\EchoMatrix\EchoMatrix\Builds\VisualStudio2019\x64
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-
