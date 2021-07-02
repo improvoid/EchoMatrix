@@ -44,9 +44,9 @@ modrevsaw(f,m) = (m - 0.5) : max(0.0) : _ * 2.0 * (0.0 - os.lf_saw(f));
 // /h:[4]ModWave : Defines a control group that will group sub-controls in a "h" horizontal layout
 // /MW U%j[style:knob] : Defines the labels on the knobs an styles the sliders as knobs
 
-modwave(j,f) = modsaw(f,m) + modsin(f,m) + modrevsaw(f,m) //: si.smoo
+modwave(j,f) = modsaw(f,m) + modsin(f,m) + modrevsaw(f,m) : si.smoo
 with {
-    m = hslider("t:EchoMatrix/v:[1]Delays/h:[4]ModWave/MW U%j[style:knob]",0.5, 0.0, 1.0, 0.001);
+    m = hslider("t:EchoMatrix/v:[1]Delays/h:[4]ModWave/MW U%j[style:knob]",0.5, 0.0, 1.0, 0.001) //: si.smoo;
 };
 
 // Define the matrix, delays, and feedback paths
