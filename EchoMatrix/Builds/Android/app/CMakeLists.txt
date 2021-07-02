@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.4.1)
 
 set(BINARY_NAME "juce_jni")
 
-set(OBOE_DIR "C:/Projects_Audio/JUCE/modules/juce_audio_devices/native/oboe")
+set(OBOE_DIR "/Users/skraninger/Documents/JUCE/modules/juce_audio_devices/native/oboe")
 
 add_subdirectory (${OBOE_DIR} ./oboe)
 
@@ -16,7 +16,7 @@ add_definitions("-DJUCE_ANDROID=1" "-DJUCE_ANDROID_API_VERSION=16" "-DJUCE_PUSH_
 
 include_directories( AFTER
     "../../../JuceLibraryCode"
-    "C:/Projects_Audio/JUCE/modules"
+    "/Users/skraninger/Documents/JUCE/modules"
     "${ANDROID_NDK}/sources/android/cpufeatures"
 )
 
