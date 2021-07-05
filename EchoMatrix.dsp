@@ -9,7 +9,7 @@ import("stdfaust.lib");
 // Can change the number of delay lines and the matrix size
 numberOfDelays = 6;
 
-// Can change the max delay time, calculates samplees
+// Can change the max delay time, calculates samples
 maxDelaySeconds = 2;
 maxDelayMsec = maxDelaySeconds * 1000.0;
 maxDelaySamples = maxDelaySeconds * float(ma.SR);
@@ -81,14 +81,14 @@ with {
 
 matrixDelays(N) = _,_ : ( fdMatrix(N + 2) : par(i,N, effects(i)),_,_ ) ~ par(r,N,_) : par(l,N,!),_,_
 with {
-    // For now, the effect is just the delay with a time and a modulator
-	effects(j)	= de.fdelay2(maxDelaySamples, dtime(j));
-    dtime(j)	= hslider("t:EchoMatrix/v:[1]Delays/h:[2]Delay Time/DT U%j[unit:ms][scale:exp][style:knob]", 0, 0, maxDelayMsec, 0.1) : si.smoo :
+  // For now, the effect is just the delay with a time and a modulator
+  effects(j) = de.fdelay2(maxDelaySamples, dtime(j));
+  dtime(j) = hslider("t:EchoMatrix/v:[1]Delays/h:[2]Delay Time/DT U%j[unit:ms][scale:exp][style:knob]", 0, 0, maxDelayMsec, 0.1) : si.smoo :
         *(1.0+modOsc(j))*ma.SR/1000.0
         : min(maxDelaySamples) : max(minDelaySamples);
-    modFreq(j) = hslider("t:EchoMatrix/v:[1]Delays/h:[3]ModFreq/MF U%j[scale:exp][style:knob]", 0.05, 0.0, 10.0, 0.001) : si.smoo ;
-    modDepth(j) = hslider("t:EchoMatrix/v:[1]Delays/h:[4]ModDepth/MD U%j[scale:exp][style:knob]", 0.0, 0.0, 0.8, 0.001) : si.smoo ;
-    modOsc(j) = modwave(j, modFreq(j)) * modDepth(j);
+  modFreq(j) = hslider("t:EchoMatrix/v:[1]Delays/h:[3]ModFreq/MF U%j[scale:exp][style:knob]", 0.05, 0.0, 10.0, 0.001) : si.smoo ;
+  modDepth(j) = hslider("t:EchoMatrix/v:[1]Delays/h:[4]ModDepth/MD U%j[scale:exp][style:knob]", 0.0, 0.0, 0.8, 0.001) : si.smoo ;
+  modOsc(j) = modwave(j, modFreq(j)) * modDepth(j);
 };
 
 // Allow some gain control on the output
